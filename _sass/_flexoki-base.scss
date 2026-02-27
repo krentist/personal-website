@@ -1,0 +1,88 @@
+// Flexoki Color Palette Base
+:root {
+  --font-content: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", Segoe UI, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "Cascadia Code", "IBM Plex Mono", "Roboto Mono", Menlo, Monaco, monospace;
+  --border-radius: 4px;
+  --wrap-normal: 37em;
+  --wrap-wide: 54em;
+  --line-height: 1.5;
+  --heading-weight: 500;
+
+  // Flexoki Light Mode
+  --flexoki-black: #100F0F;
+  --flexoki-paper: #FFFCF0;
+  --flexoki-50: #F2F0E5;
+  --flexoki-100: #E6E4D9;
+  --flexoki-150: #DAD8CE;
+  --flexoki-200: #CECDC3;
+  --flexoki-300: #B7B5AC;
+  --flexoki-600: #6F6E69;
+  --flexoki-700: #282726;
+  --flexoki-800: #1C1B1A;
+  --flexoki-cyan-400: #3AA99F;
+  --flexoki-cyan-600: #24837B;
+  --flexoki-cyan-50: #DDF1E4;
+  --flexoki-red: #AF3029;
+  --flexoki-orange: #BC5215;
+  --flexoki-yellow: #D0A215;
+  --flexoki-green: #66800B;
+  --flexoki-blue: #0156DC;
+  --flexoki-purple: #6E40AA;
+  --flexoki-pink: #D5527B;
+
+  // Light Mode Colors
+  --color-bg-primary: var(--flexoki-paper);
+  --color-bg-secondary: var(--flexoki-50);
+  --color-tx-normal: var(--flexoki-black);
+  --color-tx-muted: var(--flexoki-600);
+  --color-tx-faint: var(--flexoki-300);
+  --color-ui-normal: var(--flexoki-100);
+  --color-ui-hover: var(--flexoki-150);
+  --color-ui-active: var(--flexoki-200);
+  --color-action: var(--flexoki-cyan-600);
+  --color-bg-hover: var(--flexoki-cyan-50);
+  --color-highlight: #F6E2A0;
+  --color-selection: rgba(187, 220, 206, 0.3);
+  --color-border: var(--flexoki-150);
+}
+
+// Dark Mode
+body.theme-dark {
+  --flexoki-paper: #100F0F;
+  --flexoki-50: #1C1B1A;
+  --flexoki-100: #282726;
+  --flexoki-150: #323231;
+  --flexoki-200: #3C3B3A;
+  --flexoki-300: #504F4B;
+  --flexoki-600: #B7B5AC;
+  --flexoki-black: #FFFCF0;
+  
+  --color-bg-primary: var(--flexoki-paper);
+  --color-bg-secondary: var(--flexoki-50);
+  --color-tx-normal: var(--flexoki-black);
+  --color-tx-muted: var(--flexoki-600);
+  --color-tx-faint: var(--flexoki-300);
+  --color-ui-normal: var(--flexoki-100);
+  --color-ui-hover: var(--flexoki-150);
+  --color-ui-active: var(--flexoki-200);
+  --color-action: var(--flexoki-cyan-400);
+  --color-bg-hover: rgba(58, 169, 159, 0.1);
+  --color-selection: rgba(58, 169, 159, 0.2);
+  --color-border: var(--flexoki-150);
+}
+
+@media (max-width: 860px) {
+  :root {
+    --wrap-normal: 88vw;
+    --wrap-wide: 100vw;
+    --heading-weight: 600;
+  }
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--color-selection);
+}

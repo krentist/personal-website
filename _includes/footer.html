@@ -1,1 +1,20 @@
-This is the footer. Include anything you'd like here, like a link to an <a class="internal-link" href="{{ site.baseurl }}/about">About</a> page.
+<div class="pn2 bt">
+  <p><a href="/subscribe" class="muted internal-link font-ui">Receive my updates</a></p>
+  <p>Follow me via email, <a href="/feed.xml" class="internal-link">RSS</a>, <a href="https://twitter.com/{{ site.twitter }}" target="_blank" rel="noopener noreferrer">Twitter</a>, and <a href="/subscribe" class="internal-link">other options</a></p>
+  <div class="mn2 small font-ui">
+  <form action="https://buttondown.email/api/emails/embed-subscribe/{{ site.buttondown_username }}" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.email/{{ site.buttondown_username }}','popupwindow')" class="embeddable-buttondown-form">
+    <input type="email" name="email" id="bd-email" placeholder="Enter your email">
+    <input type="hidden" value="1" name="embed">
+    <input type="hidden" name="tag" value="via-footer">
+    <input type="submit" value="Sign up">
+  </form>
+  </div>
+</div>
+<div class="pn2">
+  {% if site.author_avatar %}
+  <a href="/about" aria-label="About me" title="About me">
+    <img src="{{ site.author_avatar }}" alt="{{ site.author }}" class="round" style="width:40px; height:40px; border-radius:50%;">
+  </a>
+  {% endif %}
+  {% if site.mastodon %}<a rel="me noopener noreferrer" href="{{ site.mastodon }}" style="display:none" target="_blank">Mastodon</a>{% endif %}
+</div>
