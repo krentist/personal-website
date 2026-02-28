@@ -1148,6 +1148,7 @@ p {
   background-color: var(--color-bg-secondary);
   aspect-ratio: 1 / 1;
   margin-bottom: 0.75em;
+  position: relative;
   
   img {
     width: 100%;
@@ -1160,6 +1161,37 @@ p {
   &:hover img {
     transform: scale(1.05);
   }
+}
+
+.album-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  padding: 1em;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  
+  .gallery-item:hover & {
+    opacity: 1;
+  }
+}
+
+.album-count {
+  color: var(--color-bg-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.gallery-description {
+  font-size: var(--font-small);
+  color: var(--color-tx-muted);
+  margin: 0.25em 0 0 0;
 }
 
 .gallery-title {

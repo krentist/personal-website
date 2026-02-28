@@ -7,14 +7,21 @@ layout: default
     <h1 class="text-2xl mb4">{{ page.title }}</h1>
     
     <div class="gallery-grid">
-      {% for item in site.data.gallery.items %}
+      {% for album in site.data.gallery.albums %}
         <div class="gallery-item">
           <div class="gallery-image">
-            <img src="{{ item.image }}" alt="{{ item.alt }}" loading="lazy" />
+            <img src="{{ album.cover_image }}" alt="{{ album.title }}" loading="lazy" />
+            <div class="album-overlay">
+              <span class="album-count">{{ album.photos | size }} photo{{ album.photos | size | minus: 1 | abs | plus: 1 | replace: '1', '' }}</span>
+            </div>
           </div>
-          <h3 class="gallery-title">{{ item.title }}</h3>
+          <h3 class="gallery-title">{{ album.title }}</h3>
+          {% if album.description %}
+            <p class="gallery-description">{{ album.description }}</p>
+          {% endif %}
         </div>
       {% endfor %}
     </div>
   </div>
 </article>
+

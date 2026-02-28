@@ -1,12 +1,31 @@
-items:
-  - title: "Your First Image"
-    image: "/assets/gallery/image-1.jpg"
-    alt: "Description of first image"
+albums:
+  - title: "The Morro"
+    cover_image: "/assets/gallery/morro/cover.jpg"
+    description: "Optional album description"
+    photos:
+      - image: "/assets/gallery/morro/photo1.jpg"
+        alt: "The Morro photo 1"
+      - image: "/assets/gallery/morro/photo2.jpg"
+        alt: "The Morro photo 2"
   
-  - title: "Your Second Image"
-    image: "/assets/gallery/image-2.jpg"
-    alt: "Description of second image"
+  - title: "Porsche"
+    cover_image: "/assets/gallery/porsche/cover.jpg"
+    description: ""
+    photos:
+      - image: "/assets/gallery/porsche/photo1.jpg"
+        alt: "Porsche photo 1"
   
-  - title: "Your Third Image"
-    image: "/assets/gallery/image-3.jpg"
-    alt: "Description of third image"
+  - title: "Los Angeles"
+    cover_image: "/assets/gallery/losangeles/cover.jpg"
+    description: ""
+    photos:
+      - image: "/assets/gallery/losangeles/photo1.jpg"
+        alt: "Los Angeles photo 1"
+  
+  - title: "People"
+    cover_image: "/assets/gallery/people/cover.jpg"
+    description: ""
+    photos:
+      - image: "/assets/gallery/people/photo1.jpg"
+        alt: "People photo 1"
+
