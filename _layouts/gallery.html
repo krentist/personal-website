@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<article class="pv4">
+  <div class="wrap">
+    <h1 class="text-2xl mb4">{{ page.title }}</h1>
+    
+    <div class="gallery-grid">
+      {% for item in site.data.gallery.items %}
+        <div class="gallery-item">
+          <div class="gallery-image">
+            <img src="{{ item.image }}" alt="{{ item.alt }}" loading="lazy" />
+          </div>
+          <h3 class="gallery-title">{{ item.title }}</h3>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</article>

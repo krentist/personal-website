@@ -1108,3 +1108,64 @@ button:hover {
 p {
   top: -0.35em;
 }
+
+/* ==========================
+   GALLERY GRID
+   ========================== */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2em;
+  margin-top: 2em;
+  
+  @media (max-width: 860px) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5em;
+  }
+  
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 1em;
+  }
+}
+
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
+    opacity: 0.9;
+  }
+}
+
+.gallery-image {
+  overflow: hidden;
+  border-radius: var(--image-radius);
+  background-color: var(--color-bg-secondary);
+  aspect-ratio: 1 / 1;
+  margin-bottom: 0.75em;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.gallery-title {
+  font-size: 1rem;
+  font-weight: var(--heading-weight);
+  color: var(--color-tx-normal);
+  margin: 0;
+  line-height: 1.3;
+}

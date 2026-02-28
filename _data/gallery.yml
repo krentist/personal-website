@@ -1,0 +1,12 @@
+items:
+  - title: "Your First Image"
+    image: "/assets/gallery/image-1.jpg"
+    alt: "Description of first image"
+  
+  - title: "Your Second Image"
+    image: "/assets/gallery/image-2.jpg"
+    alt: "Description of second image"
+  
+  - title: "Your Third Image"
+    image: "/assets/gallery/image-3.jpg"
+    alt: "Description of third image"
