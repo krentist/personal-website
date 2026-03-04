@@ -5,7 +5,7 @@ date: 2025-05-13
 
 Molly Nash was born in 1994 with Fanconi anaemia (FA), a life-threatening genetic disorder which causes bone marrow failure, leukaemia, and typically, an early childhood death; her life expectancy did not go past the age of 10\. At the time, the only proven treatment was a hematopoietic stem cell transplant, which demands a perfect human leukocyte antigen (HLA) match. Most previous attempts of this operation were fatal due to graft rejection. 
 
-Molly’s parents turned to conceiving another child through *in vitro* fertilization, followed by a pre-implantation diagnosis (PGD) to select an embryo that was not only free from the FA mutation, but also an HLA tissue match for Molly. Their subsequent son, Adam, was born healthy and deemed the world’s first ‘designer baby.’ His umbilical cord blood provided the life-saving stem cells for his dying sister’s successful transplant. 
+Molly’s parents turned to conceiving another child through *in vitro* fertilization, followed by a pre-implantation diagnosis (PGD) to select an embryo that was not only free from the FA mutation, but also an HLA tissue match for Molly. Their subsequent son, Adam (a very fitting name indeed), was born healthy and deemed the world’s first ‘designer baby.’ His umbilical cord blood provided the life-saving stem cells for his dying sister’s successful transplant. 
 
 >*So the Lord God caused a deep sleep to fall upon the man, and while he slept took one of his ribs and closed up its place with flesh. And the rib which the Lord God had taken from the man he made into a woman and brought her to the man. Then the man said,* 
     *“This at last is bone of my bones*  
