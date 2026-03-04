@@ -3,6 +3,7 @@ layout: page
 title: About
 permalink: /about
 ---
+# about me
 
 i'm currently studying biochemistry, neuroscience, and philosophy at the unviversity of hong kong.
 

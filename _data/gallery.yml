@@ -1,31 +1,21 @@
 albums:
-  - title: "The Morro"
-    cover_image: "/assets/gallery/morro/cover.jpg"
-    description: "Optional album description"
-    photos:
-      - image: "/assets/gallery/morro/photo1.jpg"
-        alt: "The Morro photo 1"
-      - image: "/assets/gallery/morro/photo2.jpg"
-        alt: "The Morro photo 2"
-  
-  - title: "Porsche"
-    cover_image: "/assets/gallery/porsche/cover.jpg"
-    description: ""
-    photos:
-      - image: "/assets/gallery/porsche/photo1.jpg"
-        alt: "Porsche photo 1"
-  
-  - title: "Los Angeles"
-    cover_image: "/assets/gallery/los angeles/cover.webp"
-    description: "june 2025"
-    photos:
-      - image: "/assets/gallery/losangeles/photo1.jpg"
-        alt: "Los Angeles photo 1"
-  
-  - title: "People"
-    cover_image: "/assets/gallery/people/cover.jpg"
-    description: ""
-    photos:
-      - image: "/assets/gallery/people/photo1.jpg"
-        alt: "People photo 1"
-
+- title: los angeles
+  folder: los angeles
+  cover: cover.webp
+  photos:
+    - R0002157.png
+    - R0002160.png
+    - R0002160.webp
+    - R0002162.png
+    - R0002162.webp
+    - R0002177.png
+    - R0002177.webp
+    - R0002222.png
+    - R0002222.webp
+    - R0002225.webp
+    - R0002228.webp
+    - R0002229.png
+    - R0002229.webp
+    - R0002274.png
+    - R0002274.webp
+    - cover.webp
