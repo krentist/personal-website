@@ -1,3 +1,6 @@
+---
+---
+
 Molly Nash was born in 1994 with Fanconi anaemia (FA), a life-threatening genetic disorder which causes bone marrow failure, leukaemia, and typically, an early childhood death; her life expectancy did not go past the age of 10\. At the time, the only proven treatment was a hematopoietic stem cell transplant, which demands a perfect human leukocyte antigen (HLA) match. Most previous attempts of this operation were fatal due to graft rejection. 
 
 Molly’s parents turned to conceiving another child through *in vitro* fertilization, followed by a pre-implantation diagnosis (PGD) to select an embryo that was not only free from the FA mutation, but also an HLA tissue match for Molly. Their subsequent son, Adam, was born healthy and deemed the world’s first ‘designer baby.’ His umbilical cord blood provided the life-saving stem cells for his dying sister’s successful transplant. 

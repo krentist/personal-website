@@ -9,8 +9,9 @@ This is a [now page](https://nownownow.com/about), where I write about what I'm 
 # Currently
 
 - Building my personal website
-- Working on [my project]
-- Learning + practicing Tai Chi
+- Learning about all things finance
+- Taking photos
+- Practicing Tai Chi
 - Occasional sporting (golf, rugby, and tennis)
 
 ---
