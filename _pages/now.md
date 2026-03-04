@@ -4,11 +4,9 @@ title: Now
 permalink: /now
 ---
 
-# What I'm doing now
+This is a [now page](https://nownownow.com/about), where I write about what I'm working on right now.
 
-This is a [now page](https://nownownow.com/about), where I write about what I'm focused on right now.
-
-## Currently
+# Currently
 
 - Building my personal website
 - Working on [my project]
