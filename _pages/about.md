@@ -4,6 +4,9 @@ title: About
 permalink: /about
 ---
 
-*This is an about page.*
+i'm currently studying biochemistry, neuroscience, and philosophy at the unviversity of hong kong.
 
-Feel free to tell the world about what you love! 
+i am currently trying to understand the financial landscape, with particular  interest in the intersection of finance, technology, human behavior, and healthcare / life sciences.
+
+if you want to chat about any of the above -- or anything else really -- feel free to reach out :) i'm on the lookout for new conversations and impressions, so do have a low bar for messaging me.
+
