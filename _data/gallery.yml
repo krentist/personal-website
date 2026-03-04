@@ -16,8 +16,8 @@ albums:
         alt: "Porsche photo 1"
   
   - title: "Los Angeles"
-    cover_image: "/assets/gallery/losangeles/cover.jpg"
-    description: ""
+    cover_image: "/assets/gallery/los angeles/cover.webp"
+    description: "june 2025"
     photos:
       - image: "/assets/gallery/losangeles/photo1.jpg"
         alt: "Los Angeles photo 1"
