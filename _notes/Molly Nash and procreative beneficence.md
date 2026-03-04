@@ -7,10 +7,10 @@ Molly Nash was born in 1994 with Fanconi anaemia (FA), a life-threatening geneti
 
 Molly’s parents turned to conceiving another child through *in vitro* fertilization, followed by a pre-implantation diagnosis (PGD) to select an embryo that was not only free from the FA mutation, but also an HLA tissue match for Molly. Their subsequent son, Adam, was born healthy and deemed the world’s first ‘designer baby.’ His umbilical cord blood provided the life-saving stem cells for his dying sister’s successful transplant. 
 
-	*So the Lord God caused a deep sleep to fall upon the man, and while he slept took one of his ribs and closed up its place with flesh. And the rib which the Lord God had taken from the man he made into a woman and brought her to the man. Then the man said,* 
-		*“This at last is bone of my bones*  
-		*and flesh of my flesh…”*
-	*– Genesis 2:21-23*
+>*So the Lord God caused a deep sleep to fall upon the man, and while he slept took one of his ribs and closed up its place with flesh. And the rib which the Lord God had taken from the man he made into a woman and brought her to the man. Then the man said,* 
+    *“This at last is bone of my bones*  
+     *and flesh of my flesh…”*
+Genesis 2:21-23*
 
 This case thrust humanity and public consciousness into a new era of procreative decision making. PGD allows for screening of embryos for genetic or chromosomal abnormalities before implantation. A polygenic risk score is generated, indicating the predictive validity of certain traits. This power to select, therefore, begs the question of whether we use these technologies to select the ‘best’ possible children.
 
