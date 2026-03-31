@@ -4,7 +4,6 @@ albums:
   cover: cover.webp
   photos:
     - R0002160.webp
-    - R0002162.webp
     - R0002177.webp
     - R0002222.webp
     - R0002225.webp
@@ -22,3 +21,117 @@ albums:
     - R0005556.webp
     - R0005562.webp
     - R0005634.webp
+
+- title: beijing
+  folder: beijing
+  cover: cover.webp
+  photos:
+    - R0005878.webp
+    - R0005997.webp
+    - R0006041.webp
+    - R0006095.webp
+    - R0006192.webp
+    - R0006359.webp
+    - R0006401.webp
+    - R0006470.webp
+    - R0006472.webp
+    - R0006480.webp
+    - R0006495.webp
+    - R0006508.webp
+    - R0006527.webp
+    - R0006605.webp
+
+- title: brittany and normandy
+  folder: brittany and normandy
+  cover: cover.webp
+  photos:
+    - R0004791.webp
+    - R0004914.webp
+    - R0004996.webp
+    - R0005162.webp
+    - R0005310.webp
+
+- title: cambridgeshire
+  folder: cambridgeshire
+  cover: cover.webp
+  photos:
+    - R0005463.webp
+    - R0005471.webp
+    - R0005478.webp
+    - R0005480.webp
+    - R0005481.webp
+    - R0005483.webp
+    - R0005492.webp
+    - R0005493.webp
+    - R0005495.webp
+
+- title: côte d'azur
+  folder: côte d'azur
+  cover: cover.webp
+  photos:
+    - R0004548.webp
+    - R0004552.webp
+    - R0004629.webp
+    - R0004637.webp
+
+- title: massachusetts
+  folder: massachusetts
+  cover: cover.webp
+  photos:
+    - R0002958.png
+    - R0003278.webp
+    - R0003293.webp
+    - R0003306.webp
+    - R0003309.webp
+
+- title: new haven
+  folder: new haven
+  cover: cover.webp
+  photos:
+    - R0002492.webp
+    - R0002503.webp
+    - R0002555.webp
+    - R0002562.webp
+    - R0002722.webp
+    - R0002738.webp
+    - R0002797.webp
+    - R0002843.webp
+    - R0002935.webp
+    - R0003413.webp
+
+- title: new york
+  folder: new york
+  cover: cover.webp
+  photos:
+    - R0002401.webp
+    - R0003597.webp
+    - R0003647.webp
+    - R0003706.webp
+
+- title: paris
+  folder: paris
+  cover: cover.webp
+  photos:
+    - R0004057.webp
+    - R0004270.webp
+    - R0004435.webp
+    - R0004518.webp
+
+- title: san francisco
+  folder: san francisco
+  cover: cover.webp
+  photos:
+    - R0001383.webp
+    - R0001517.webp
+    - R0001676.webp
+    - R0001709.webp
+    - R0001710.webp
+
+- title: yosemite
+  folder: yosemite
+  cover: cover.webp
+  photos:
+    - R0001851.webp
+    - R0001962.webp
+    - R0002065.webp
+    - R0002084.webp
