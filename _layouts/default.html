@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   {% include head.html %}
+  <link rel="stylesheet" href="/assets/css/styles.css">  <!-- ← ADD THIS LINE -->
   <body>
     <script>
       if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
