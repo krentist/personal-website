@@ -2,26 +2,27 @@
 layout: default
 ---
 
-<article class="pv4">
-  <div class="wrap">
-    <h1 class="text-2xl mb4">{{ page.title }}</h1>
-    
-    <div class="gallery-grid">
-      {% for album in site.data.gallery.albums %}
-        <div class="gallery-item">
-          <div class="gallery-image">
-            <img src="{{ album.cover_image }}" alt="{{ album.title }}" loading="lazy" />
-            <div class="album-overlay">
-              <span class="album-count">{{ album.photos | size }} photo{{ album.photos | size | minus: 1 | abs | plus: 1 | replace: '1', '' }}</span>
+<article class="photo-feed-container">
+  <div class="photo-feed">
+    {% for photo in site.data.photos.photos %}
+      <div class="photo-item" data-photo-index="{{ forloop.index }}">
+        <div class="photo-image-wrapper">
+          <img 
+            src="/assets/gallery/{{ photo.folder }}/{{ photo.filename }}" 
+            alt="Photo from {{ photo.place }}" 
+            loading="lazy" 
+            decoding="async"
+            class="photo-image"
+          />
+          <div class="photo-hover-panel">
+            <div class="photo-info-content">
+              <div class="photo-place">{{ photo.place }}</div>
+              <div class="photo-date">{{ photo.date }}</div>
             </div>
           </div>
-          <h3 class="gallery-title">{{ album.title }}</h3>
-          {% if album.description %}
-            <p class="gallery-description">{{ album.description }}</p>
-          {% endif %}
         </div>
-      {% endfor %}
-    </div>
+      </div>
+    {% endfor %}
   </div>
 </article>
 

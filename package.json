@@ -1,5 +1,8 @@
 {
   "scripts": {
     "build": "bundle exec jekyll build && npx staticrypt \"_site/breaking-into-finance.html\" \"$PROTECTED_PASSWORD\""
+  },
+  "dependencies": {
+    "framer-motion": "^12.35.0"
   }
 }
