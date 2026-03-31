@@ -3,19 +3,22 @@ albums:
   folder: los angeles
   cover: cover.webp
   photos:
-    - R0002157.png
-    - R0002160.png
     - R0002160.webp
-    - R0002162.png
     - R0002162.webp
-    - R0002177.png
     - R0002177.webp
-    - R0002222.png
     - R0002222.webp
     - R0002225.webp
     - R0002228.webp
-    - R0002229.png
     - R0002229.webp
-    - R0002274.png
     - R0002274.webp
-    - cover.webp
+
+- title: london
+  folder: london
+  cover: cover.webp
+  photos:
+    - R0005488.webp
+    - R0005516.webp
+    - R0005554.webp
+    - R0005556.webp
+    - R0005562.webp
+    - R0005634.webp

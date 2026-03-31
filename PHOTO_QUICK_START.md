@@ -2,80 +2,115 @@
 
 ## What Changed ✨
 
-Your gallery is now a **beautiful masonry photo feed** (like Charlie Deets' site):
-- Grid layout that adjusts to screen size
-- Hover to see date + location
-- All your photos displayed at once
+Your gallery now matches Charlie Deets' **two-tier structure**:
+
+1. **Gallery Page** (`/gallery/`) — Album cards with cover images
+2. **Album Pages** (`/albums/london/`, etc.) — All photos in masonry grid paysoff 
 
 ---
 
-## Right Now: Existing Setup
+## How It Works
 
-Your current photos are already set up! They're in:
-- `/assets/gallery/los angeles/` - Contains your LA photos
-
-The `_data/photos.yml` file has them ready to go.
+```
+Gallery Page (Shows Albums)
+    ↓ (Click an album)
+Album Detail Page (Shows All Photos)
+```
 
 ---
 
-## To Add More Photos
+## Adding a Complete New Album (5 Steps)
 
-### Quick Checklist:
+### 1. Create Folder
+`/assets/gallery/london/`
 
+### 2. Add Cover Image
+`/assets/gallery/london/cover.webp` ← Shown on gallery page
+
+### 3. Add All Photos (WebP Format)
 ```
-1. Create a new folder in /assets/gallery/[trip-name]/
-2. Move WebP photos into that folder
-3. Edit _data/photos.yml - add entries
-4. Save & refresh browser
+/assets/gallery/london/
+├── cover.webp
+├── photo1.webp
+├── photo2.webp
+└── ... (all your photos)
 ```
 
-### Template to Copy-Paste:
+### 4. Update Data File
+Edit `_data/gallery.yml`:
 
 ```yaml
-  - filename: YOUR_PHOTO.webp
-    date: "March 15, 2024"
-    place: "City Name"
-    folder: city-name
+- title: london
+  folder: london
+  cover: cover.webp
+  photos:
+    - photo1.webp
+    - photo2.webp
+    - photo3.webp
 ```
+
+### 5. Create Album Page
+Create file: `_albums/london.md`
+
+```markdown
+---
+layout: album-detail
+title: London
+album_title: london
+permalink: /albums/london/
+---
+```
+
+**Done!** Now you can click the album on the gallery page to see all photos.
 
 ---
 
-## File Locations Reference
+## Critical Files
 
 | Item | Location |
 |------|----------|
+| Album Data | `_data/gallery.yml` |
+| Album Pages | `_albums/` |
 | Photo Folders | `/assets/gallery/` |
-| Photo Data | `_data/photos.yml` |
-| Gallery Page | `_pages/gallery.md` |
-| Full Instructions | `PHOTO_GUIDE.md` |
+| Templates | `_layouts/gallery.html` |
 
 ---
 
-## Important Notes
+## Batch Workflow (5-15 Photos)
 
-✓ Use **WebP format** for photos (smaller file size)  
-✓ Folder names: use **lowercase** with spaces OK  
-✓ Names in `photos.yml` must match exactly  
-✓ Hard refresh browser after making changes (Cmd+Shift+R)
+1. Create trip folder
+2. Add `cover.webp`
+3. Add converted photos
+4. Update `_data/gallery.yml` with all filenames
+5. Create `_albums/trip-name.md`
+6. Save & refresh
 
----
-
-## Workflow for Bulk Adding
-
-Adding 5-15 photos? Do this:
-
-1. Create trip folder: `/assets/gallery/paris/`
-2. Convert photos to WebP
-3. Move them to the folder
-4. Open `_data/photos.yml`
-5. Copy-paste the template 5-15 times
-6. Fill in: filename, date, place, folder
-7. Save and refresh!
-
-Done in minutes.
+**That's it!**
 
 ---
 
-## Need the Full Guide?
+## Key Rules
 
-See **PHOTO_GUIDE.md** for detailed instructions with examples.
+✓ Use **lowercase folder names**  
+✓ **WebP format** only (smaller, faster)  
+✓ **`cover.webp`** must exist in each album folder  
+✓ Album title in `gallery.yml` **must match** `album_title` in markdown  
+✓ Folder name in `gallery.yml` **must match** actual folder
+
+---
+
+## If Something Doesn't Work
+
+**Album shows but no photos when clicked?**
+→ Create the `_albums/[name].md` file
+
+**Cover won't show?**
+→ Make sure `cover.webp` exists in the folder
+
+**Photos missing?**
+→ Check filenames match exactly in `gallery.yml`
+
+---
+
+See **PHOTO_GUIDE.md** for full detailed instructions.
+

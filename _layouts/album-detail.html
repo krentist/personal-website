@@ -1,0 +1,48 @@
+---
+layout: default
+---
+
+{% assign album = site.data.gallery.albums | where: "title", page.album_title | first %}
+
+<a href="/gallery/" class="category-pill">{{ page.album_title }}</a>
+
+<main>
+  <div class="image-feed">
+    {% if album and album.photos %}
+      {% for photo in album.photos %}
+        <div class="image-item">
+          <img 
+            src="/assets/gallery/{{ album.folder }}/{{ photo }}" 
+            alt="Photo from {{ page.album_title }}" 
+            loading="lazy" 
+            decoding="async"
+          />
+        </div>
+      {% endfor %}
+    {% else %}
+      <p style="padding: 2rem; color: red;">
+        Album lookup failed. Debug info:<br>
+        album_title: "{{ page.album_title }}"<br>
+        album found: {{ album | default: 'NO' }}<br>
+        Make sure "{{ page.album_title }}" exists in _data/gallery.yml
+      </p>
+    {% endif %}
+  </div>
+</main>
+
+<script>
+  // Auto-detect portrait images and add class
+  document.querySelectorAll('.image-feed img').forEach(img => {
+    const checkPortrait = () => {
+      if (img.naturalHeight > img.naturalWidth) {
+        img.classList.add('portrait');
+      }
+    };
+    
+    if (img.complete) {
+      checkPortrait();
+    } else {
+      img.onload = checkPortrait;
+    }
+  });
+</script>

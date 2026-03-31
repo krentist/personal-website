@@ -5,7 +5,7 @@ twitter:             your_twitter_handle
 buttondown_username: your_email_username
 url:                 http://localhost:4000
 
-include:             ['_pages']
+include:             ['_pages', '_albums']
 exclude:             ['_includes/notes_graph.json']
 # You may need to change the base URL depending on your deploy configuration.
 baseurl:             ''

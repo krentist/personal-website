@@ -1,28 +1,20 @@
----
-layout: default
----
-
-<article class="photo-feed-container">
-  <div class="photo-feed">
-    {% for photo in site.data.photos.photos %}
-      <div class="photo-item" data-photo-index="{{ forloop.index }}">
-        <div class="photo-image-wrapper">
+<main>
+  <div class="cameras-grid">
+    {% for album in site.data.gallery.albums %}
+      <a href="/albums/{{ album.title | slugify }}/" class="camera-card">
+        <div class="camera-card-image">
           <img 
-            src="/assets/gallery/{{ photo.folder }}/{{ photo.filename }}" 
-            alt="Photo from {{ photo.place }}" 
-            loading="lazy" 
+            src="/assets/gallery/{{ album.folder }}/{{ album.cover }}" 
+            alt="{{ album.title }}" 
+            loading="lazy"
             decoding="async"
-            class="photo-image"
+            {% if album.portrait %}class="portrait"{% endif %}
           />
-          <div class="photo-hover-panel">
-            <div class="photo-info-content">
-              <div class="photo-place">{{ photo.place }}</div>
-              <div class="photo-date">{{ photo.date }}</div>
-            </div>
-          </div>
         </div>
-      </div>
+        <div class="camera-card-info">
+          <h3>{{ album.title }}</h3>
+        </div>
+      </a>
     {% endfor %}
   </div>
-</article>
-
+</main>

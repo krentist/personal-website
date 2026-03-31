@@ -1203,7 +1203,154 @@ p {
 }
 
 /* ==========================
-   PHOTO FEED (MASONRY)
+   ALBUM GRID (Camera-style Cards)
+   ========================== */
+
+main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  
+  @media (max-width: 860px) {
+    padding: 1.5rem 1rem;
+  }
+}
+
+.cameras-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.25rem;
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+}
+
+.camera-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
+    opacity: 0.9;
+  }
+}
+
+.camera-card-image {
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: var(--color-bg-secondary);
+  aspect-ratio: 1 / 1;
+  margin-bottom: 0.75em;
+  position: relative;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  
+  .camera-card:hover & img {
+    transform: scale(1.05);
+  }
+}
+
+.camera-card-info {
+  display: flex;
+  flex-direction: column;
+  
+  h3 {
+    font-size: 1rem;
+    font-weight: var(--heading-weight);
+    color: var(--color-tx-normal);
+    margin: 0;
+    line-height: 1.3;
+    text-transform: capitalize;
+  }
+}
+
+/* ==========================
+   IMAGE FEED (Masonry Grid)
+   ========================== */
+
+.category-pill {
+  display: inline-block;
+  background-color: var(--color-ui-normal);
+  color: var(--color-tx-normal);
+  padding: 0.5em 1em;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  margin: 1.5rem 1.5rem 1.5rem 0;
+  transition: background-color 0.2s ease;
+  text-transform: capitalize;
+  
+  &:hover {
+    background-color: var(--color-ui-hover);
+  }
+  
+  @media (max-width: 860px) {
+    margin: 1rem 1rem 1rem 0;
+  }
+}
+
+.image-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 100%;
+  width: 100%;
+  padding: 0 1rem;
+
+  @media (min-width: 900px) {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    gap: 2rem;
+  }
+
+  .image-item {
+    width: 100%;
+    text-align: center;  /* ← ADD THIS - centers the image when narrower */
+    
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: var(--image-radius);
+      
+      /* ← ADD THIS WHOLE BLOCK */
+      &.portrait {
+        max-width: 65%;        /* Adjust this percentage as needed */
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+}
+
+/* ==========================
+   PHOTO FEED (MASONRY) - LEGACY
    ========================== */
 
 .photo-feed-container {
@@ -1309,4 +1456,8 @@ p {
   font-size: 0.95rem;
   color: rgba(255, 252, 240, 0.85);
   line-height: 1.4;
+}
+
+.hidden-signup {
+  display: none;
 }
