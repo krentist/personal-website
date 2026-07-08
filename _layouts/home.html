@@ -14,14 +14,22 @@
       </span>
       <span class="flex-shrink ssr">
           <a href="/about" class="muted plain">About</a>
-          <a href="/now" class="muted plain ssl mh">Now</a>
-          <a href="/gallery" class="muted plain ssl mh">Gallery</a>
+          <a href="/now" class="muted plain ssl">Now</a>
+          <a href="/gallery" class="muted plain ssl">Gallery</a>
       </span>
       <span id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode" type="button" role="switch" aria-checked="false">
           <div class="theme-toggle-slide"></div>
           <div class="theme-toggle-switch"></div>
       </span>
     </nav>
+
+    <!-- Sky Birds Animation -->
+    <div class="hero-container">
+      <div class="hero-sky-inner">
+        <canvas id="sky-canvas"></canvas>
+        <canvas id="sky-clouds"></canvas>
+      </div>
+    </div>
 
     <main>
       {{ content }}
@@ -91,5 +99,7 @@
         });
       });
     </script>
+
+    <script src="/sky-birds.js"></script>
   </body>
 </html>
