@@ -6,7 +6,7 @@ buttondown_username: your_email_username
 url:                 http://localhost:4000
 
 include:             ['_pages', '_albums']
-exclude:             ['_includes/notes_graph.json']
+exclude:             ['_includes/notes_graph.json', 'scripts', 'node_modules']
 # You may need to change the base URL depending on your deploy configuration.
 baseurl:             ''
 

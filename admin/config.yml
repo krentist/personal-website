@@ -1,0 +1,105 @@
+# Sveltia CMS configuration — the /admin editor commits straight to GitHub.
+#
+# ONE-TIME SETUP (required before first sign-in):
+#   1. GitHub → Settings → Developer settings → OAuth Apps → New OAuth App
+#        Homepage URL:  https://<your-site>.netlify.app  (or your custom domain)
+#        Callback URL:  https://api.netlify.com/auth/done
+#   2. Netlify → Site configuration → Access & security → OAuth →
+#        Install provider → GitHub → paste the Client ID + Secret.
+#   3. Open https://<your-site>/admin/ and sign in with GitHub.
+
+backend:
+  name: github
+  repo: krentist/personal-website
+  branch: main
+  base_url: https://api.netlify.com
+
+media_folder: assets/img
+public_folder: /assets/img
+
+# Sveltia converts images in the browser on upload — same format the
+# album pipeline produces
+media_libraries:
+  default:
+    config:
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          max_width: 2400
+          max_height: 2400
+
+collections:
+  - name: notes
+    label: Notes
+    folder: _notes
+    create: true
+    extension: md
+    slug: '{{title}}'
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: posts
+    label: Posts
+    folder: _posts
+    create: true
+    extension: md
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    fields:
+      - { name: layout, label: Layout, widget: hidden, default: note }
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: datetime, format: 'YYYY-MM-DD' }
+      - { name: excerpt, label: Excerpt, widget: string, required: false }
+      - { name: published, label: Published, widget: boolean, default: true }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: gallery
+    label: Gallery
+    files:
+      - name: albums
+        label: Albums & route
+        file: _data/gallery.yml
+        media_folder: /assets/gallery
+        public_folder: /assets/gallery
+        fields:
+          - name: route_order
+            label: Globe route order
+            widget: select
+            options: [journey, alphabetical, file, nearest]
+            default: journey
+          - name: albums
+            label: Albums
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: title, label: Title, widget: string, hint: 'lowercase, e.g. "new york"' }
+              - { name: folder, label: Folder (in assets/gallery/), widget: string }
+              - { name: slug, label: Slug (URL, ASCII), widget: string }
+              - { name: lat, label: Latitude, widget: number, value_type: float }
+              - { name: lng, label: Longitude, widget: number, value_type: float }
+              - { name: cover, label: Cover filename, widget: string, default: cover.webp }
+              - name: photos
+                label: Photos (filenames, in display order)
+                widget: list
+                field: { name: photo, label: Filename, widget: string }
+
+  - name: pages
+    label: Pages
+    files:
+      - name: about
+        label: About
+        file: _pages/about.md
+        fields:
+          - { name: layout, label: Layout, widget: hidden, default: page }
+          - { name: title, label: Title, widget: string }
+          - { name: permalink, label: Permalink, widget: hidden, default: /about }
+          - { name: body, label: Body, widget: markdown }
+      - name: now
+        label: Now
+        file: _pages/now.md
+        fields:
+          - { name: layout, label: Layout, widget: hidden, default: page }
+          - { name: title, label: Title, widget: string }
+          - { name: permalink, label: Permalink, widget: hidden, default: /now }
+          - { name: body, label: Body, widget: markdown }

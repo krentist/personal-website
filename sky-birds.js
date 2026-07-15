@@ -313,8 +313,8 @@
     const sx = 0.66 * pw, sy = 0.36 * ph;
     const r = 0.036 * Math.min(pw, ph);
 
-    // Soft scumbled disc
-    ctx.filter = 'blur(' + (2 * dpr) + 'px)';
+    // Scumbled disc: hazy but present
+    ctx.filter = 'blur(' + (1.2 * dpr) + 'px)';
     for (let i = 0; i < 5; i++) {
       const ox = (rng() - 0.5) * r * 0.6;
       const oy = (rng() - 0.5) * r * 0.6;
@@ -326,7 +326,7 @@
     }
 
     // Broken shimmer trailing below, like the harbor reflection
-    ctx.filter = 'blur(' + dpr + 'px)';
+    ctx.filter = 'blur(' + (0.6 * dpr) + 'px)';
     for (let i = 0; i < 10; i++) {
       const y = sy + r * (1.8 + rng() * 15);
       if (y > ph * 0.95) continue;
@@ -359,14 +359,16 @@
     body.width = pw;
     body.height = ph;
     const bctx = body.getContext('2d');
-    paintStrokes(bctx, rng, ref, pw, ph, flowSeed, { density: 300, len: [40, 80], w: [11, 18], alpha: 0.60, jitter: 24 });
-    paintStrokes(bctx, rng, ref, pw, ph, flowSeed, { density: 170, len: [20, 46], w: [6, 11],  alpha: 0.55, jitter: 30 });
-    ctx.filter = 'blur(' + (0.7 * dpr) + 'px)';
+    // Confident, near-opaque strokes: the softness of a Monet comes from
+    // color harmony, not blur — edges stay clean
+    paintStrokes(bctx, rng, ref, pw, ph, flowSeed, { density: 300, len: [40, 80], w: [11, 18], alpha: 0.90, jitter: 28 });
+    paintStrokes(bctx, rng, ref, pw, ph, flowSeed, { density: 170, len: [20, 46], w: [6, 11],  alpha: 0.85, jitter: 32 });
+    ctx.filter = 'blur(' + (0.35 * dpr) + 'px)';
     ctx.drawImage(body, 0, 0);
     ctx.filter = 'none';
 
-    // Crisp small dabs on top — the visible touch of the brush
-    paintStrokes(ctx, rng, ref, pw, ph, flowSeed, { density: 260, len: [10, 24], w: [4, 7], alpha: 0.5, jitter: 44 });
+    // Crisp finishing dabs, straight onto the canvas
+    paintStrokes(ctx, rng, ref, pw, ph, flowSeed, { density: 300, len: [10, 24], w: [4, 7], alpha: 0.8, jitter: 38 });
 
     if (pal.sun) paintSun(ctx, rng, pw, ph);
 
@@ -413,7 +415,7 @@
       const y = baseY + h * 0.10 * rng();
       drawStroke(bctx, rng, x, y, (rng() - 0.5) * 0.15,
                  w * (0.16 + 0.16 * rng()), h * (0.08 + 0.07 * rng()),
-                 rgba(C.shadow, 0.25 + 0.15 * rng()));
+                 rgba(C.shadow, 0.4 + 0.2 * rng()));
     }
 
     // Massed body strokes
@@ -430,7 +432,7 @@
       };
       drawStroke(bctx, rng, px, py, (rng() - 0.5) * 0.35,
                  w * (0.10 + 0.14 * rng()), h * (0.09 + 0.10 * rng()),
-                 rgba(c, 0.4 + 0.25 * rng()));
+                 rgba(c, 0.65 + 0.3 * rng()));
     }
 
     // Lit accents on the sunny edge
@@ -439,10 +441,10 @@
       const py = baseY - h * (0.28 + 0.2 * rng());
       drawStroke(bctx, rng, px, py, (rng() - 0.5) * 0.25,
                  w * (0.08 + 0.10 * rng()), h * (0.05 + 0.05 * rng()),
-                 rgba(C.accent, 0.25 + 0.18 * rng()));
+                 rgba(C.accent, 0.4 + 0.2 * rng()));
     }
 
-    ctx.filter = 'blur(1.6px)';
+    ctx.filter = 'blur(0.9px)';
     ctx.drawImage(body, 0, 0);
     ctx.filter = 'none';
 
@@ -496,58 +498,43 @@
     }
   }
 
-  // --- Bird SVG (side view, facing right) ---
-  function birdSVGMarkup() {
+  // --- Bird SVG: a gestural brush-mark gull ---
+  // Layered translucent whites with no hard detail, run through a
+  // turbulence displacement so every edge wobbles like a loaded brush.
+  function birdSVGMarkup(seed) {
+    const fid = 'pbf-' + seed;
     return `
-      <g>
-        <defs>
-          <radialGradient id="bird-body-grad" cx="0.45" cy="0.35" r="0.65">
-            <stop offset="0%" stop-color="#FFFFFF"/>
-            <stop offset="55%" stop-color="#F5F1EB"/>
-            <stop offset="100%" stop-color="#DFD9CE"/>
-          </radialGradient>
-          <linearGradient id="bird-wing-grad" x1="1" y1="1" x2="0" y2="0">
-            <stop offset="0%" stop-color="#FAF7F2"/>
-            <stop offset="70%" stop-color="#EAE4DA"/>
-            <stop offset="100%" stop-color="#D6CFC2"/>
-          </linearGradient>
-        </defs>
+      <defs>
+        <filter id="${fid}" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.13 0.17" numOctaves="2" seed="${seed}" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/>
+        </filter>
+      </defs>
+      <g filter="url(#${fid})">
         <g class="wing-far">
-          <path d="M25 22.5 Q20 12, 9 8 Q15.5 16.5, 20.5 21.5 Q22.5 23.2, 25 23.2 Z" fill="#E0DACF" opacity="0.85"/>
-          <path d="M22 20 Q17 14.5, 11.5 10.5" fill="none" stroke="#C4BCAE" stroke-width="0.4" opacity="0.3"/>
+          <path d="M25 23 C20 15, 13.5 9.5, 8.5 8.5 C13 15.5, 18 20.5, 24.5 23.6 Z" fill="#DCD5C8" opacity="0.7"/>
         </g>
-        <path d="M17 24 Q10.5 21.8, 7.8 23.4 Q11.8 26.6, 17 26.6 Q15.4 25.3, 17 24 Z" fill="#E8E2D8"/>
-        <path d="M9.5 23.2 Q13 24.6, 16 25.4" fill="none" stroke="#C4BCAE" stroke-width="0.4" opacity="0.3"/>
-        <ellipse cx="24.5" cy="24.5" rx="9" ry="4.6" fill="url(#bird-body-grad)"/>
-        <path d="M16.5 25 Q24 29.6, 32.5 25 Q24 27.6, 16.5 25 Z" fill="#C8C0B0" opacity="0.3"/>
-        <ellipse cx="24.5" cy="24.5" rx="9" ry="4.6" fill="none" stroke="#B8B0A0" stroke-width="0.35" opacity="0.2"/>
-        <ellipse cx="22.5" cy="23" rx="3" ry="1.8" fill="white" opacity="0.25"/>
-        <ellipse cx="30" cy="22.5" rx="4.2" ry="3.4" fill="#F5F1EB"/>
-        <circle cx="32.5" cy="21" r="3.4" fill="url(#bird-body-grad)"/>
-        <circle cx="31.5" cy="20" r="1.1" fill="white" opacity="0.3"/>
-        <circle cx="32.5" cy="21" r="3.4" fill="none" stroke="#B8B0A2" stroke-width="0.3" opacity="0.2"/>
-        <path d="M35.6 20.3 L39.6 21.5 L35.7 22.6 Q36.3 21.4, 35.6 20.3 Z" fill="#E8A030"/>
-        <path d="M35.6 20.3 L39.6 21.5 L35.7 22.6" fill="none" stroke="#B07020" stroke-width="0.3" opacity="0.4"/>
-        <circle cx="33.5" cy="20.5" r="0.55" fill="#1a1a1a"/>
-        <circle cx="33.7" cy="20.3" r="0.18" fill="white" opacity="0.7"/>
+        <path d="M16 24.8 C13 23.5, 10.5 23.3, 9 24 C11 25.7, 13.6 26.4, 16.4 26.3 Z" fill="#EDE8DE" opacity="0.85"/>
+        <path d="M15.5 24.5 C17 21.6, 21 20.3, 26 20.8 C30 21.2, 33.6 22.2, 34.9 23.4 C33.8 26, 30 27.9, 25 28 C20.5 28, 16.8 26.6, 15.5 24.5 Z" fill="#F7F4EE" opacity="0.95"/>
+        <path d="M17 26.3 C21 28.3, 28 28.4, 33 25.9 C29.5 28.7, 21.5 29.1, 17 26.3 Z" fill="#A9A6B8" opacity="0.38"/>
+        <ellipse cx="32" cy="22.2" rx="2.7" ry="2.1" fill="#FCFAF5" opacity="0.9"/>
+        <ellipse cx="35.7" cy="22.7" rx="1.5" ry="0.75" transform="rotate(10 35.7 22.7)" fill="#D99A4E" opacity="0.55"/>
         <g class="wing-near">
-          <path d="M24 22.8 Q17.5 8.5, 4.5 4.5 Q9.5 13.5, 16.5 19 Q20.5 22, 24 24.2 Z" fill="url(#bird-wing-grad)"/>
-          <path d="M24 22.8 Q17.5 8.5, 4.5 4.5 Q9.5 13.5, 16.5 19 Q20.5 22, 24 24.2 Z" fill="none" stroke="#B8B0A0" stroke-width="0.35" opacity="0.22"/>
-          <path d="M21 19.5 Q14.5 12.5, 8 7.5" fill="none" stroke="#CCC4B4" stroke-width="0.45" opacity="0.35"/>
-          <path d="M22.5 21.3 Q16.5 16, 10.5 11.5" fill="none" stroke="#D4CCC0" stroke-width="0.35" opacity="0.28"/>
-          <path d="M8.5 7.5 Q6 5.6, 4.5 4.5 Q7.5 9.5, 10.5 12.5 Z" fill="#C9C2B4" opacity="0.5"/>
+          <path d="M24 23.5 C19 16, 12.5 9, 5.5 6 C9 13, 15 19.5, 22.5 24.8 C23.3 25.2, 24 24.6, 24 23.5 Z" fill="#FBF8F2" opacity="0.95"/>
+          <path d="M21.5 20.5 C17 15.5, 12.5 10.8, 8 8" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" opacity="0.35"/>
+          <path d="M9 9.5 C7.5 8, 6.2 6.8, 5.5 6 C7 9.5, 9 12.5, 11.5 15 Z" fill="#DCD5C8" opacity="0.5"/>
         </g>
       </g>
     `;
   }
 
-  function createBirdSVG() {
+  function createBirdSVG(seed) {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('width', '64');
     svg.setAttribute('height', '64');
     svg.setAttribute('viewBox', '0 0 48 48');
     svg.setAttribute('fill', 'none');
-    svg.innerHTML = birdSVGMarkup();
+    svg.innerHTML = birdSVGMarkup(seed);
     return svg;
   }
 
@@ -558,8 +545,8 @@
     const size = 40 + Math.round(26 * Math.random());
     const wrapper = document.createElement('div');
     wrapper.className = 'sky-bird';
-    wrapper.style.cssText = 'position:absolute;pointer-events:none;will-change:transform,opacity;filter:blur(0.45px) drop-shadow(0 1px 3px rgba(42,37,32,0.10));z-index:5;';
-    const svg = createBirdSVG();
+    wrapper.style.cssText = 'position:absolute;pointer-events:none;will-change:transform,opacity;filter:blur(0.3px);z-index:5;';
+    const svg = createBirdSVG(1 + Math.floor(Math.random() * 9999));
     svg.setAttribute('width', String(size));
     svg.setAttribute('height', String(size));
     wrapper.appendChild(svg);
@@ -660,9 +647,9 @@
       `scaleX(${b.dir}) rotate(${b.bank.toFixed(2)}deg) scale(${b.scale})`;
 
     const wing = b.wingAmp * Math.sin(b.wingPhase) - 3;
-    b.wingNear.setAttribute('transform', `rotate(${wing.toFixed(2)} 24 22.8)`);
+    b.wingNear.setAttribute('transform', `rotate(${wing.toFixed(2)} 24 23.5)`);
     const wingF = b.wingAmp * 0.85 * Math.sin(b.wingPhase - 0.35) - 3;
-    b.wingFar.setAttribute('transform', `rotate(${wingF.toFixed(2)} 25 22.5)`);
+    b.wingFar.setAttribute('transform', `rotate(${wingF.toFixed(2)} 25 23)`);
   }
 
   // --- Init ---

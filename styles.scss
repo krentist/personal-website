@@ -11,6 +11,7 @@
 :root {
   --font-content: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", Segoe UI, Helvetica, Arial, sans-serif;
   --font-ui: var(--font-content);
+  --font-writing: "Lora", Georgia, "Times New Roman", serif;
   --font-mono: ui-monospace, SFMono-Regular, "Cascadia Code", "IBM Plex Mono", "Roboto Mono", "DejaVu Sans Mono", "Liberation Mono", Menlo, Monaco, "Consolas", "Source Code Pro", monospace;
   
   --border-radius: 4px;
@@ -224,6 +225,17 @@ small, .small {
 
 .font-mono {
   font-family: var(--font-mono);
+}
+
+/* Long-form writing uses Lora throughout, mirroring the Substack scheme:
+   serif body at 400, all headings in the same serif at 600. */
+article {
+  font-family: var(--font-writing);
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-writing);
+    font-weight: 600;
+  }
 }
 
 mark {
@@ -1289,62 +1301,100 @@ main {
 }
 
 /* ==========================
-   IMAGE FEED (Masonry Grid)
+   ALBUM PHOTO FEED (Charlie Deets style)
    ========================== */
 
 .category-pill {
-  display: inline-block;
-  background-color: var(--color-ui-normal);
-  color: var(--color-tx-normal);
-  padding: 0.5em 1em;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 500;
+  position: fixed;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background: rgba(244, 244, 244, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 0 22px;
+  height: 46px;
+  line-height: 46px;
+  border-radius: 46px;
+  box-shadow: 0 6px 36px rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+  font-size: 15px;
+  color: #434343;
+  text-align: center;
+  white-space: nowrap;
   text-decoration: none;
-  margin: 1.5rem 1.5rem 1.5rem 0;
-  transition: background-color 0.2s ease;
-  text-transform: capitalize;
-  
+  display: inline-block;
+  transition: color 0.2s, background 0.2s;
+
   &:hover {
-    background-color: var(--color-ui-hover);
+    color: #000;
   }
-  
-  @media (max-width: 860px) {
-    margin: 1rem 1rem 1rem 0;
+
+  .theme-dark & {
+    background: rgba(40, 39, 38, 0.5);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: var(--color-tx-normal);
+    box-shadow: 0 6px 36px rgba(0, 0, 0, 0.4);
+
+    &:hover {
+      color: #fff;
+    }
   }
+
+  /* the top nav spans the full width on small screens — float the pill at the bottom instead */
+  @media (max-width: 600px) {
+    top: auto;
+    bottom: 24px;
+  }
+}
+
+@keyframes feed-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: feed-fade-in 0.6s ease both;
 }
 
 .image-feed {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  max-width: 100%;
-  width: 100%;
-  padding: 0 1rem;
-
-  @media (min-width: 900px) {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    gap: 2rem;
-  }
+  gap: 40px;
+  align-items: center;
+  padding-top: 56px;
 
   .image-item {
     width: 100%;
-    text-align: center;  /* ← ADD THIS - centers the image when narrower */
-    
-    img {
-      width: 100%;
-      height: auto;
+    max-width: 1200px;
+    position: relative;
+    text-align: center;
+
+    a {
       display: block;
-      border-radius: var(--image-radius);
-      
-      /* ← ADD THIS WHOLE BLOCK */
-      &.portrait {
-        max-width: 65%;        /* Adjust this percentage as needed */
-        margin-left: auto;
-        margin-right: auto;
-      }
+    }
+
+    img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      /* the whole photo always fits in the window — portraits shrink to it */
+      max-height: 88vh;
+      display: block;
+      margin: 0 auto;
+      vertical-align: middle;
+      border-radius: 16px;
+      background: var(--color-bg-secondary);
+    }
+  }
+
+  @media (max-width: 860px) {
+    gap: 24px;
+
+    .image-item img {
+      border-radius: 12px;
     }
   }
 }
@@ -1500,5 +1550,263 @@ main {
   .hero-container {
     height: min(50vh, 400px);
     margin: 0 auto 2rem;
+  }
+}
+
+/* ==========================
+   GALLERY VIEWS (Folders · Globe · All)
+   ========================== */
+
+.view-switcher {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.view-tab {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  background-color: transparent;
+  color: var(--color-tx-muted);
+  padding: 0.4em 1em;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background-color: var(--color-ui-hover);
+    color: var(--color-tx-normal);
+    border: none; /* the global button:hover rule adds one otherwise */
+  }
+
+  &.is-active {
+    background-color: var(--color-ui-normal);
+    color: var(--color-tx-normal);
+  }
+}
+
+.gallery-view[hidden] {
+  display: none;
+}
+
+/* --- All view: masonry wall --- */
+
+.all-feed {
+  columns: 4 220px;
+  column-gap: 1rem;
+
+  @media (max-width: 1024px) {
+    columns: 3 180px;
+  }
+
+  @media (max-width: 600px) {
+    columns: 2 140px;
+    column-gap: 0.75rem;
+  }
+}
+
+.all-item {
+  display: block;
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  border-radius: var(--image-radius, 8px);
+  overflow: hidden;
+  background-color: var(--color-bg-secondary);
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.02);
+    opacity: 0.92;
+  }
+
+  @media (max-width: 600px) {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* GLightbox caption: the default "clean" skin paints a white bar under the
+   photo — make it part of the dark overlay instead */
+/* doubled class outranks the vendor stylesheet, which loads after ours */
+.glightbox-clean .gslide-description.gslide-description {
+  background: transparent;
+}
+
+.glightbox-clean .gslide-desc.gslide-desc {
+  color: rgba(255, 255, 255, 0.92);
+  text-align: center;
+  font-family: inherit;
+}
+
+.gslide-description .gslide-desc a {
+  color: #fff;
+  text-transform: capitalize;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+
+  &:hover {
+    border-bottom-color: #fff;
+  }
+}
+
+/* --- Globe view --- */
+
+#globe-container {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* globe.gl renders a fixed-size canvas; keep it from spilling on small screens */
+  canvas {
+    max-width: 100%;
+  }
+}
+
+.globe-loading {
+  color: var(--color-tx-muted);
+  padding: 4rem 0;
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  letter-spacing: 0.06em;
+}
+
+#view-globe {
+  position: relative;
+}
+
+.route-toggle {
+  appearance: none;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 5;
+  border: 1px solid var(--color-ui-active);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8em;
+  font-weight: 500;
+  padding: 0.35em 1em;
+  border-radius: 20px;
+  background-color: var(--color-ui-normal);
+  color: var(--color-tx-normal);
+  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 1.1em;
+    height: 0;
+    margin-right: 0.5em;
+    vertical-align: middle;
+    border-top: 2px dashed #a6402f;
+  }
+
+  /* the global button:hover rule repaints border/color — pin them down */
+  &:hover {
+    background-color: var(--color-ui-hover);
+    border: 1px solid var(--color-ui-active);
+    color: var(--color-tx-normal);
+  }
+
+  &.is-off {
+    background-color: transparent;
+    color: var(--color-tx-muted);
+
+    &::before {
+      border-top-color: var(--color-tx-faint);
+    }
+  }
+
+  /* comfortable touch target on small screens */
+  @media (max-width: 600px) {
+    padding: 0.7em 1.2em;
+  }
+}
+
+/* pins styled like marks on an old chart: vermilion dot, paper label card */
+.globe-pin {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+
+  .globe-pin-dot {
+    display: block;
+    width: 11px;
+    height: 11px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: #a6402f;
+    border: 2px solid #f4eede;
+    box-shadow: 0 0 0 1px rgba(90, 74, 48, 0.45), 0 1px 3px rgba(50, 40, 20, 0.3);
+    transition: transform 0.15s ease;
+  }
+
+  .globe-pin-card {
+    position: absolute;
+    bottom: calc(100% + 9px);
+    left: 50%;
+    transform: translateX(-50%) scale(0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    width: 126px;
+    padding: 0.45rem 0.45rem 0.3rem;
+    border-radius: 4px;
+    background-color: #f7f1e1;
+    border: 1px solid #b9a97e;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 6px 20px rgba(50, 40, 20, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+
+    img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 2px;
+      border: 1px solid rgba(138, 121, 90, 0.4);
+      display: block;
+    }
+  }
+
+  .globe-pin-label {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: #4a4034;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    line-height: 1.25;
+    text-align: center;
+    padding-bottom: 0.1rem;
+  }
+
+  &:hover {
+    z-index: 10;
+
+    .globe-pin-dot {
+      transform: scale(1.3);
+    }
+
+    .globe-pin-card {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) scale(1);
+    }
   }
 }

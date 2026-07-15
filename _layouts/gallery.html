@@ -2,23 +2,85 @@
 layout: default
 ---
 
-<main>
-  <div class="cameras-grid">
-    {% for album in site.data.gallery.albums %}
-      <a href="/albums/{{ album.title | slugify }}/" class="camera-card">
-        <div class="camera-card-image">
-          <img 
-            src="/assets/gallery/{{ album.folder }}/{{ album.cover }}" 
-            alt="{{ album.title }}" 
-            loading="lazy"
-            decoding="async"
-            {% if album.portrait %}class="portrait"{% endif %}
-          />
-        </div>
-        <div class="camera-card-info">
-          <h3>{{ album.title }}</h3>
-        </div>
-      </a>
-    {% endfor %}
+<div class="gallery-page">
+  <div class="view-switcher" role="tablist" aria-label="Gallery views">
+    <button class="view-tab is-active" data-view="folders" role="tab" aria-selected="true">folders</button>
+    <button class="view-tab" data-view="globe" role="tab" aria-selected="false">globe</button>
+    <button class="view-tab" data-view="all" role="tab" aria-selected="false">all</button>
   </div>
-</main>
+
+  <div id="view-folders" class="gallery-view">
+    <div class="cameras-grid">
+      {% for album in site.data.gallery.albums %}
+        <a href="/albums/{{ album.slug }}/" class="camera-card">
+          <div class="camera-card-image">
+            <img
+              src="/assets/gallery/{{ album.folder }}/{{ album.cover }}"
+              alt="{{ album.title }}"
+              loading="lazy"
+              decoding="async"
+              {% if album.portrait %}class="portrait"{% endif %}
+            />
+          </div>
+          <div class="camera-card-info">
+            <h3>{{ album.title }}</h3>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="view-globe" class="gallery-view" hidden>
+    <div id="globe-container">
+      <p class="globe-loading">loading globe…</p>
+    </div>
+    <button id="route-toggle" class="route-toggle" type="button" aria-pressed="true" hidden>route</button>
+  </div>
+
+  <div id="view-all" class="gallery-view" hidden>
+    <div class="all-feed" id="all-feed">
+      {% for album in site.data.gallery.albums %}
+        {% for photo in album.photos %}
+          {% capture dim_key %}{{ album.folder }}/{{ photo }}{% endcapture %}
+          {% assign dims = site.data.photo_dims[dim_key] %}
+          <a
+            class="all-item glightbox"
+            href="/assets/gallery/{{ album.folder }}/{{ photo }}"
+            data-gallery="all-photos"
+            data-description='<a href="/albums/{{ album.slug }}/">{{ album.title | escape }}</a>'
+          >
+            <img
+              src="/assets/gallery/{{ album.folder }}/{{ photo }}"
+              alt="Photo from {{ album.title }}"
+              loading="lazy"
+              decoding="async"
+              {% if dims %}width="{{ dims.w }}" height="{{ dims.h }}"{% endif %}
+            />
+          </a>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  window.GALLERY_ROUTE = {{ site.data.gallery.route | jsonify }};
+  window.GALLERY_ALBUMS = [
+    {% for album in site.data.gallery.albums %}
+    {
+      title: {{ album.title | jsonify }},
+      url: {{ album.slug | prepend: "/albums/" | append: "/" | jsonify }},
+      {% capture cover_path %}/assets/gallery/{{ album.folder }}/{{ album.cover }}{% endcapture %}
+      cover: {{ cover_path | jsonify }},
+      lat: {{ album.lat }},
+      lng: {{ album.lng }},
+      firstPhoto: {{ album.photos | first | jsonify }},
+      photoCount: {{ album.photos | size }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+  window.GALLERY_CONFIG = {
+    routeOrder: {{ site.data.gallery.route_order | default: "journey" | jsonify }}
+  };
+</script>
+<script src="/assets/js/gallery-views.js" defer></script>

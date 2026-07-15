@@ -1,6 +1,24 @@
+# how the globe's expedition track links your cities:
+#   journey      - chronological, inferred from each album's first photo number
+#   alphabetical - by album title
+#   file         - the order albums appear in this file
+#   nearest      - shortest-hop chain between cities
+route_order: journey
+
+# Optional manual override for the globe's voyage line: uncomment `route:` and
+# list album slugs in visit order. Slugs left off get a pin but no track.
+# When absent, route_order above decides automatically (new albums join on
+# their own): journey (camera-number chronology) | alphabetical | file | nearest
+# route:
+# - san-francisco
+# - new-york
+
 albums:
 - title: los angeles
   folder: los angeles
+  slug: los-angeles
+  lat: 34.0522
+  lng: -118.2437
   cover: cover.webp
   photos:
     - R0002160.webp
@@ -13,6 +31,9 @@ albums:
 
 - title: london
   folder: london
+  slug: london
+  lat: 51.5072
+  lng: -0.1276
   cover: cover.webp
   photos:
     - R0005488.webp
@@ -24,6 +45,9 @@ albums:
 
 - title: beijing
   folder: beijing
+  slug: beijing
+  lat: 39.9042
+  lng: 116.4074
   cover: cover.webp
   photos:
     - R0005878.webp
@@ -43,6 +67,9 @@ albums:
 
 - title: brittany and normandy
   folder: brittany and normandy
+  slug: brittany-and-normandy
+  lat: 48.6361
+  lng: -1.5115
   cover: cover.webp
   photos:
     - R0004791.webp
@@ -53,6 +80,9 @@ albums:
 
 - title: cambridgeshire
   folder: cambridgeshire
+  slug: cambridgeshire
+  lat: 52.2053
+  lng: 0.1218
   cover: cover.webp
   photos:
     - R0005463.webp
@@ -62,11 +92,13 @@ albums:
     - R0005481.webp
     - R0005483.webp
     - R0005492.webp
-    - R0005493.webp
     - R0005495.webp
 
 - title: côte d'azur
   folder: cote-d-azur
+  slug: cote-d-azur
+  lat: 43.7102
+  lng: 7.262
   cover: cover.webp
   photos:
     - R0004548.webp
@@ -76,6 +108,9 @@ albums:
 
 - title: massachusetts
   folder: massachusetts
+  slug: massachusetts
+  lat: 42.3601
+  lng: -71.0589
   cover: cover.webp
   photos:
     - R0002958.png
@@ -86,6 +121,9 @@ albums:
 
 - title: new haven
   folder: new haven
+  slug: new-haven
+  lat: 41.3083
+  lng: -72.9279
   cover: cover.webp
   photos:
     - R0002492.webp
@@ -101,6 +139,9 @@ albums:
 
 - title: new york
   folder: new york
+  slug: new-york
+  lat: 40.7128
+  lng: -74.006
   cover: cover.webp
   photos:
     - R0002401.webp
@@ -110,6 +151,9 @@ albums:
 
 - title: paris
   folder: paris
+  slug: paris
+  lat: 48.8566
+  lng: 2.3522
   cover: cover.webp
   photos:
     - R0004057.webp
@@ -119,6 +163,9 @@ albums:
 
 - title: san francisco
   folder: san francisco
+  slug: san-francisco
+  lat: 37.7749
+  lng: -122.4194
   cover: cover.webp
   photos:
     - R0001383.webp
@@ -129,6 +176,9 @@ albums:
 
 - title: yosemite
   folder: yosemite
+  slug: yosemite
+  lat: 37.8651
+  lng: -119.5383
   cover: cover.webp
   photos:
     - R0001851.webp
